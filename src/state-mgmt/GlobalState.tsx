@@ -3,6 +3,7 @@ import React, { createContext, memo, PropsWithChildren, useReducer, Dispatch } f
 import { initialState as artistInitialState } from './artist/state';
 import { reducer as artistReducer } from './artist/reducer';
 import { IAction } from './types';
+import { deps } from './dependencies';
 
 export const initialState = {
   artist: artistInitialState
@@ -21,9 +22,10 @@ export function combineReducers<GS>(reducerMap: Record<string, (state: any, acti
   };
 }
 
-export const GlobalContext = createContext<{ state: IGlobalState; dispatch: Dispatch<any> }>({
+export const GlobalContext = createContext<{ state: IGlobalState; dispatch: Dispatch<any>; deps: typeof deps }>({
   state: initialState,
-  dispatch: () => null
+  dispatch: () => null,
+  deps
 });
 
 export const GlobalProvider = memo(({ children }: PropsWithChildren<{}>) => {
@@ -31,5 +33,5 @@ export const GlobalProvider = memo(({ children }: PropsWithChildren<{}>) => {
     combineReducers<IGlobalState>({ artist: artistReducer }),
     initialState
   );
-  return <GlobalContext.Provider value={{ state, dispatch }}>{children}</GlobalContext.Provider>;
+  return <GlobalContext.Provider value={{ state, dispatch, deps }}>{children}</GlobalContext.Provider>;
 });
