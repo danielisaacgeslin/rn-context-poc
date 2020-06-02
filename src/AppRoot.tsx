@@ -15,7 +15,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import { List } from './List';
 import { Item } from './Item';
-import { ArtistProvider } from './state-mgmt/user/ArtistState';
+import { GlobalProvider } from './state-mgmt/GlobalState';
 
 const { Screen, Navigator } = createStackNavigator();
 
@@ -23,14 +23,14 @@ export const AppRoot = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <ArtistProvider>
+      <GlobalProvider>
         <NavigationContainer>
           <Navigator>
             <Screen name="Home" component={List} />
             <Screen name="Artist" component={Item} />
           </Navigator>
         </NavigationContainer>
-      </ArtistProvider>
+      </GlobalProvider>
     </>
   );
 };

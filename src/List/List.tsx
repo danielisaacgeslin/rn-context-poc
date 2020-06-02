@@ -3,9 +3,11 @@ import { View, Text } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { FlatList } from 'react-native-gesture-handler';
 
-import { ArtistContext, IArtist, useArtistEffect } from '../state-mgmt/user/ArtistState';
 import { Input } from '../shared/Input/Input';
 import { ListItem } from './components/ListItem';
+import { useArtistEffect } from '../state-mgmt/artist/useArtistEffect';
+import { IArtist } from '../state-mgmt/artist/state';
+import { GlobalContext } from '../state-mgmt/GlobalState';
 
 export interface Props {
   navigation: StackNavigationProp<any>;
@@ -13,9 +15,9 @@ export interface Props {
 
 const List = ({ navigation }: Props) => {
   const [search, setSearch] = useState('');
-  const { state } = useContext(ArtistContext);
+  const { state } = useContext(GlobalContext);
   const { searchArtist } = useArtistEffect();
-  const list = useMemo(() => Object.values(state.artistMap), [state.artistMap]);
+  const list = useMemo(() => Object.values(state.artist.artistMap), [state.artist.artistMap]);
   const keyExtractor = useCallback((item: IArtist) => item.idArtist, []);
   const onSubmitEditing = useCallback(async () => {
     await searchArtist(search);

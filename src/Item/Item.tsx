@@ -1,7 +1,8 @@
 import React, { memo, useContext } from 'react';
 import { ScrollView, Text, Image, View } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { ArtistContext } from '../state-mgmt/user/ArtistState';
+
+import { GlobalContext } from '../state-mgmt/GlobalState';
 
 export interface Props {
   navigation: StackNavigationProp<any>;
@@ -9,8 +10,8 @@ export interface Props {
 }
 
 const Item = ({ navigation, route }: Props) => {
-  const { state } = useContext(ArtistContext);
-  const artist = state.artistMap[route?.params?.id];
+  const { state } = useContext(GlobalContext);
+  const artist = state.artist.artistMap[route?.params?.id];
   return (
     <ScrollView contentInsetAdjustmentBehavior="automatic">
       <Image style={{ width: '100%', height: 100 }} source={{ uri: artist.strArtistBanner }} />

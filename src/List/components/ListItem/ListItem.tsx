@@ -1,9 +1,9 @@
 import React, { memo } from 'react';
 import { View, Text, Image } from 'react-native';
 
-import { IArtist } from '../../../state-mgmt/user/ArtistState';
 import { styles } from './styles';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { IArtist } from '../../../state-mgmt/artist/state';
 
 export interface Props {
   artist: IArtist;
@@ -11,7 +11,6 @@ export interface Props {
 }
 
 const ListItem = ({ artist, onPress }: Props) => {
-  console.log('list item', artist.strArtistThumb);
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.container}>
