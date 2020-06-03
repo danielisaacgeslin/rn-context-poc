@@ -15,7 +15,14 @@ const ListItem = ({ artist, onPress }: Props) => {
     <TouchableOpacity onPress={onPress}>
       <View style={styles.container}>
         <View style={styles.dataContainer}>
-          <Image style={styles.image as any} source={{ uri: artist.strArtistThumb }} />
+          <Image
+            style={styles.image as any}
+            source={{
+              uri:
+                artist.strArtistThumb ||
+                'https://www.dovercourt.org/wp-content/uploads/2019/11/610-6104451_image-placeholder-png-user-profile-placeholder-image-png.jpg'
+            }}
+          />
           <Text>{artist.strArtist}</Text>
         </View>
         <Text style={styles.link}>view details</Text>

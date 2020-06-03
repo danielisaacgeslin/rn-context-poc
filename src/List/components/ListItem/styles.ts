@@ -8,6 +8,7 @@ export const styles = {
     align-items: center;
     background: white;
     margin: 3px 0;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05);
   `,
   dataContainer: css`
     flex-direction: row;
