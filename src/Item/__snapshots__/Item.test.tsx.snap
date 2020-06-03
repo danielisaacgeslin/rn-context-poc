@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Item should render 1`] = `
+<RCTScrollView
+  contentInsetAdjustmentBehavior="automatic"
+>
+  <View>
+    <Image
+      source={
+        Object {
+          "uri": "banner.png",
+        }
+      }
+      style={
+        Object {
+          "height": 100,
+          "width": "100%",
+        }
+      }
+    />
+    <View
+      style={
+        Object {
+          "padding": 15,
+        }
+      }
+    >
+      <Text>
+        Freddie Mercuty
+      </Text>
+      <Text
+        ellipsizeMode="head"
+        numberOfLines={30}
+      >
+        this is a bio
+      </Text>
+    </View>
+  </View>
+</RCTScrollView>
+`;

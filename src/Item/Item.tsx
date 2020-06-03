@@ -1,15 +1,13 @@
 import React, { memo, useContext } from 'react';
 import { ScrollView, Text, Image, View } from 'react-native';
-import { StackNavigationProp } from '@react-navigation/stack';
 
 import { GlobalContext } from '../state-mgmt/GlobalState';
 
 export interface Props {
-  navigation: StackNavigationProp<any>;
   route: any; // RouteProp<{ id: string; }, any>; /** @todo find out how to use this type */
 }
 
-const Item = ({ navigation, route }: Props) => {
+const Item = ({ route }: Props) => {
   const { state } = useContext(GlobalContext);
   const artist = state.artist.artistMap[route?.params?.id];
   return (

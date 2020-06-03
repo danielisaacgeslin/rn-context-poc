@@ -2,14 +2,9 @@ import React, { createContext, memo, PropsWithChildren, useReducer, Dispatch, us
 
 import { initialState as artistInitialState } from './artist/state';
 import { reducer as artistReducer } from './artist/reducer';
-import { IAction } from './types';
-import { getDeps } from './dependencies';
+import { IAction, IGlobalState, Deps } from './types';
 
-export type IGlobalState = typeof initialState;
-
-export const deps = getDeps<IGlobalState>();
-
-export const initialState = {
+export const initialState: IGlobalState = {
   artist: artistInitialState
 };
 
@@ -24,16 +19,16 @@ export function combineReducers<GS>(reducerMap: Record<string, (state: any, acti
   };
 }
 
-export const GlobalContext = createContext<{ state: IGlobalState; dispatch: Dispatch<any>; deps: typeof deps }>({
+export const GlobalContext = createContext<{ state: IGlobalState; dispatch: Dispatch<any>; deps: Deps }>({
   state: initialState,
   dispatch: () => null,
-  deps
+  deps: null
 });
 
-export const GlobalProvider = memo(({ children }: PropsWithChildren<{}>) => {
+export const GlobalProvider = memo(({ children, deps, initState = initialState }: PropsWithChildren<{ deps: Deps; initState?: IGlobalState }>) => {
   const [state, dispatch] = useReducer(
     combineReducers<IGlobalState>({ artist: artistReducer }),
-    initialState
+    initState
   );
   useEffect(() => deps.stateSnapshot.set(state), [state]);
   return <GlobalContext.Provider value={{ state, dispatch, deps }}>{children}</GlobalContext.Provider>;

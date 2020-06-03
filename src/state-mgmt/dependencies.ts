@@ -1,9 +1,11 @@
-export const getDeps = <State>() => ({
+import { Deps, IGlobalState } from './types';
+
+export const getDeps = (): Deps => ({
   apiService: { request: fetch },
   stateSnapshot: (() => {
-    let state: State;
+    let state: IGlobalState;
     return {
-      set: (s: State) => {
+      set: (s: IGlobalState) => {
         state = s;
       },
       get: () => state
