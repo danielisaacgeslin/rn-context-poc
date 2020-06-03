@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { View, Text, Image } from 'react-native';
 
 import { styles } from './styles';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native';
 import { IArtist } from '../../../state-mgmt/artist/state';
 
 export interface Props {
@@ -12,7 +12,7 @@ export interface Props {
 
 const ListItem = ({ artist, onPress }: Props) => {
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity onPress={onPress} testID="list-item">
       <View style={styles.container}>
         <View style={styles.dataContainer}>
           <Image
