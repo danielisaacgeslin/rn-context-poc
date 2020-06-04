@@ -45,7 +45,7 @@ const List = ({ navigation }: Props) => {
         onChangeText={onSearchChange}
         value={searchState.search}
         onSubmitEditing={onSubmitEditing}
-        placeholder="Search yout Musician"
+        placeholder="Search your Musician"
         placeholderTextColor="gray"
       />
       {selectedArtist && <View style={styles.selectedContainer}>{renderItem({ item: selectedArtist })}</View>}

@@ -17,7 +17,6 @@ import { List } from './List';
 import { Item } from './Item';
 import { GlobalProvider } from './state-mgmt/GlobalState';
 import { getDeps } from './state-mgmt/dependencies';
-import { IGlobalState } from './state-mgmt/types';
 
 const { Screen, Navigator } = createStackNavigator();
 
@@ -25,7 +24,7 @@ export const AppRoot = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <GlobalProvider deps={getDeps<IGlobalState>()}>
+      <GlobalProvider deps={getDeps()}>
         <NavigationContainer>
           <Navigator>
             <Screen name="Home" component={List} />
