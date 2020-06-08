@@ -15,12 +15,15 @@
 - **yarn test** `run tests`
 - **yarn react-native** `access to the locally installed react native cli`
 
+<br/>
+<br/>
+
 ## State Management
 
 > This project uses **react context** and **react hooks** to handle state management in a fashion similar to a **redux/middleware** combination.
 > <br/><br/>
 > State management itself is achieved by using a **root level global context provider**, exactly as we would do by using _redux_. The **state object** and **dispatch function**s are exposed by the **globa context** and consumed wherever needed. It's recommended that component's consuming the context directly are few and as top level as possible encourage the use of presentation components which are a lot simpler to test and maintain.
-> <br/> > **Side effects** _(for instance fetching data from the server and storing it on the global context)_ are handled by **custom hooks**. These hooks will have access to a **deps** _(dependencies)_ object which will serve as an abstraction for all external services uses _(from the custom hook itself)_. This will allow us to have access to all necessary data/functionality needed for our hooks, as well as an easy strategy for testing _(in which **deps** will be replaced by a mocked version)_.
+> <br/>**Side effects** _(for instance fetching data from the server and storing it on the global context)_ are handled by **custom hooks**. These hooks will have access to a **deps** _(dependencies)_ object which will serve as an abstraction for all external services uses _(from the custom hook itself)_. This will allow us to have access to all necessary data/functionality needed for our hooks, as well as an easy strategy for testing _(in which **deps** will be replaced by a mocked version)_.
 
 #### Global provider setup
 
@@ -72,6 +75,9 @@ const { searchArtist } = useArtistEffect();
 const id = await searchArtist('search criteria'); // searching for artist and storing the searched artist's id *probably in a local state*
 const artist = state.artist.artistMap[searchState.id]; // accessing the global state where all *up to date* artists are stored and selecting the artist this components needed to fetch
 ```
+
+<br/>
+<br/>
 
 ## Testing
 
