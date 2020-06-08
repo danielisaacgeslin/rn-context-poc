@@ -1,5 +1,5 @@
 import React, { memo, useContext, useMemo, useCallback, useState, useEffect } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { FlatList } from 'react-native';
 
@@ -39,7 +39,7 @@ const List = ({ navigation }: Props) => {
   useEffect(() => initialSearchList.forEach(searchArtist), []);
 
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <Input
         style={styles.inputContainer}
         onChangeText={onSearchChange}
