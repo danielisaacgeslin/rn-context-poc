@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ListItem should render 1`] = `
+exports[`ListItem should render with an album count 1`] = `
 <View
   accessible={true}
   focusable={true}
@@ -65,9 +65,27 @@ exports[`ListItem should render 1`] = `
           }
         }
       />
-      <Text>
-        Freddie Mercuty
-      </Text>
+      <View>
+        <Text
+          style={
+            Object {
+              "fontSize": 13,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          Freddie Mercuty
+        </Text>
+        <Text
+          style={
+            Object {
+              "fontSize": 10,
+            }
+          }
+        >
+          5 albums
+        </Text>
+      </View>
     </View>
     <Text
       style={
@@ -147,9 +165,127 @@ exports[`ListItem should render without a thumb 1`] = `
           }
         }
       />
-      <Text>
-        Freddie Mercuty
-      </Text>
+      <View>
+        <Text
+          style={
+            Object {
+              "fontSize": 13,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          Freddie Mercuty
+        </Text>
+        <Text
+          style={
+            Object {
+              "fontSize": 10,
+            }
+          }
+        >
+          
+        </Text>
+      </View>
+    </View>
+    <Text
+      style={
+        Object {
+          "color": "blue",
+        }
+      }
+    >
+      view details
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`ListItem should render without an album count 1`] = `
+<View
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "opacity": 1,
+    }
+  }
+  testID="list-item"
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginBottom": 3,
+        "marginLeft": 0,
+        "marginRight": 0,
+        "marginTop": 3,
+        "paddingBottom": 10,
+        "paddingLeft": 15,
+        "paddingRight": 15,
+        "paddingTop": 10,
+        "shadowColor": "rgba(0, 0, 0, 0.05)",
+        "shadowOffset": Object {
+          "height": 3,
+          "width": 0,
+        },
+        "shadowOpacity": 1,
+        "shadowRadius": 3,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+        }
+      }
+    >
+      <Image
+        source={
+          Object {
+            "uri": "thumb.png",
+          }
+        }
+        style={
+          Object {
+            "height": 25,
+            "marginRight": 10,
+            "width": 25,
+          }
+        }
+      />
+      <View>
+        <Text
+          style={
+            Object {
+              "fontSize": 13,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          Freddie Mercuty
+        </Text>
+        <Text
+          style={
+            Object {
+              "fontSize": 10,
+            }
+          }
+        >
+          
+        </Text>
+      </View>
     </View>
     <Text
       style={

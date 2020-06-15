@@ -7,10 +7,11 @@ import { IArtist } from '../../../state-mgmt/artist/state';
 
 export interface Props {
   artist: IArtist;
+  albumCount: number;
   onPress: () => void;
 }
 
-const ListItem = ({ artist, onPress }: Props) => {
+const ListItem = ({ artist, albumCount, onPress }: Props) => {
   return (
     <TouchableOpacity onPress={onPress} testID="list-item">
       <View style={styles.container}>
@@ -23,7 +24,10 @@ const ListItem = ({ artist, onPress }: Props) => {
                 'https://www.dovercourt.org/wp-content/uploads/2019/11/610-6104451_image-placeholder-png-user-profile-placeholder-image-png.jpg'
             }}
           />
-          <Text>{artist.strArtist}</Text>
+          <View>
+            <Text style={styles.artistName}>{artist.strArtist}</Text>
+            <Text style={styles.count}>{albumCount ? `${albumCount} albums` : ''}</Text>
+          </View>
         </View>
         <Text style={styles.link}>view details</Text>
       </View>

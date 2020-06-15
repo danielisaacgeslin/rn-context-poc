@@ -9,12 +9,18 @@ describe('ListItem', () => {
   beforeEach(() => {
     props = {
       artist: getArtist_1(),
+      albumCount: 0,
       onPress: jest.fn()
     };
   });
 
-  it('should render', () => {
+  it('should render without an album count', () => {
     const { toJSON } = render(<ListItem {...props} />);
+    expect(toJSON()).toMatchSnapshot();
+  });
+
+  it('should render with an album count', () => {
+    const { toJSON } = render(<ListItem {...props} albumCount={5} />);
     expect(toJSON()).toMatchSnapshot();
   });
 

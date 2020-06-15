@@ -2,13 +2,16 @@ import React, { createContext, memo, PropsWithChildren, useReducer, Dispatch, us
 
 import { initialState as artistInitialState } from './artist/state';
 import { reducer as artistReducer } from './artist/reducer';
-import { IAction, IGlobalState, Deps } from './types';
+import { initialState as albumInitialState } from './album/state';
+import { reducer as albumReducer } from './album/reducer';
+import { IAction, IGlobalState, Deps, IReducer } from './types';
 
 export const initialState: IGlobalState = {
-  artist: artistInitialState
+  artist: artistInitialState,
+  album: albumInitialState
 };
 
-export function combineReducers<GS>(reducerMap: Record<string, (state: any, action: IAction) => any>) {
+export function combineReducers<GS>(reducerMap: Record<string, (state: any, action: IAction) => any>): IReducer<GS> {
   return (gState: GS, gAction: IAction) => {
     const nextState = Object.entries(reducerMap).reduce(
       (total, [stateKey, reducer]) => ({ ...total, [stateKey]: reducer(gState[stateKey], gAction) }),
@@ -25,11 +28,15 @@ export const GlobalContext = createContext<{ state: IGlobalState; dispatch: Disp
   deps: null
 });
 
-export const GlobalProvider = memo(({ children, deps, initState = initialState }: PropsWithChildren<{ deps: Deps; initState?: IGlobalState }>) => {
-  const [state, dispatch] = useReducer(
-    combineReducers<IGlobalState>({ artist: artistReducer }),
-    initState
-  );
-  useEffect(() => deps.stateSnapshot.set(state), [state]);
-  return <GlobalContext.Provider value={{ state, dispatch, deps }}>{children}</GlobalContext.Provider>;
-});
+export const GlobalProvider = memo(
+  ({
+    children,
+    deps,
+    initState = initialState,
+    combinedReducer = combineReducers<IGlobalState>({ artist: artistReducer, album: albumReducer })
+  }: PropsWithChildren<{ deps: Deps; initState?: IGlobalState; combinedReducer?: IReducer<IGlobalState> }>) => {
+    const [state, dispatch] = useReducer(combinedReducer, initState);
+    useEffect(() => deps.stateSnapshot.set(state), [state]);
+    return <GlobalContext.Provider value={{ state, dispatch, deps }}>{children}</GlobalContext.Provider>;
+  }
+);

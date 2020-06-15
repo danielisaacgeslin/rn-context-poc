@@ -21,5 +21,12 @@ export const styles = {
     margin-right: 10px;
     height: 25px;
     width: 25px;
+  `,
+  artistName: css`
+    font-size: 13px;
+    font-weight: bold;
+  `,
+  count: css`
+    font-size: 10px;
   `
 };

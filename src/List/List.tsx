@@ -22,17 +22,26 @@ const List = ({ navigation }: Props) => {
   const { state } = useContext(GlobalContext);
   const { searchArtist } = useArtistEffect();
 
-  const list = useMemo(() => Object.values(state.artist.artistMap), [state.artist.artistMap]);
+  const list = useMemo(
+    () =>
+      Object.values(state.artist.artistMap).map(artist => ({
+        artist,
+        albumCount: Object.values(state.album.albumMap[artist.idArtist] || {}).length
+      })),
+    [state.artist.artistMap, state.album.albumMap]
+  );
   const selectedArtist = state.artist.artistMap[searchState.id];
 
-  const keyExtractor = useCallback((item: IArtist) => item.idArtist, []);
+  const keyExtractor = useCallback(({ artist }: { artist: IArtist }) => artist.idArtist, []);
   const onSearchChange = useCallback((search: string) => setSearchState(prev => ({ ...prev, search })), []);
   const onSubmitEditing = useCallback(async () => {
     const id = await searchArtist(searchState.search);
     setSearchState(prev => ({ ...prev, search: '', id }));
   }, [searchState.search]);
   const renderItem = useCallback(
-    ({ item }: { item: IArtist }) => <ListItem artist={item} onPress={() => navigation.navigate('Artist', { id: item.idArtist })} />,
+    ({ item }: { item: { artist: IArtist; albumCount: number } }) => (
+      <ListItem artist={item.artist} albumCount={item.albumCount} onPress={() => navigation.navigate('Artist', { id: item.artist.idArtist })} />
+    ),
     []
   );
 
@@ -48,7 +57,11 @@ const List = ({ navigation }: Props) => {
         placeholder="Search your Musician"
         placeholderTextColor="gray"
       />
-      {selectedArtist && <View style={styles.selectedContainer}>{renderItem({ item: selectedArtist })}</View>}
+      {selectedArtist && (
+        <View style={styles.selectedContainer}>
+          {renderItem({ item: { artist: selectedArtist, albumCount: Object.keys(state.album.albumMap[selectedArtist.idArtist] || {}).length } })}
+        </View>
+      )}
       <FlatList data={list} keyExtractor={keyExtractor} renderItem={renderItem} />
     </View>
   );
