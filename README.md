@@ -1,5 +1,3 @@
-# Opya Admin Page
-
 #### This project uses:
 
 - [React Native with Typescript](https://reactnative.dev/docs/typescript)
